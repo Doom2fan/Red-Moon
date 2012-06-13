@@ -1,0 +1,234 @@
+# ----------------------------------------------------------------------------- #
+# This is a decompile of the iscript.bin file 'data\scripts\iscript.bin'
+# created on: Wed Nov 09 15:56:18 2011
+# ----------------------------------------------------------------------------- #
+
+# ----------------------------------------------------------------------------- #
+# This header is used by images.dat entries:
+# 218 Battlecruiser (terran\BattleCr.grp)
+.headerstart
+IsId           	66
+Type           	12
+Init           	BattlecruiserInit
+Death          	BattlecruiserDeath
+GndAttkInit    	BattlecruiserGndAttkInit
+AirAttkInit    	BattlecruiserAirAttkInit
+Unused1        	[NONE]
+GndAttkRpt     	BattlecruiserGndAttkInit
+AirAttkRpt     	BattlecruiserAirAttkInit
+CastSpell      	BattlecruiserCastSpell
+GndAttkToIdle  	BattlecruiserGndAttkToIdle
+AirAttkToIdle  	BattlecruiserGndAttkToIdle
+Unused2        	[NONE]
+Walking        	BattlecruiserWalking
+WalkingToIdle  	BattlecruiserWalkingToIdle
+SpecialState1  	[NONE]
+.headerend
+# ----------------------------------------------------------------------------- #
+
+BattlecruiserInit:
+	imgul          	219 0 42	# BattlecruiserShad (terran\BattleCr.grp)
+	playfram       	0x00	# frame set 0
+	goto           	BattlecruiserGndAttkToIdle
+
+BattlecruiserGndAttkToIdle:
+	wait           	125
+	goto           	BattlecruiserGndAttkToIdle
+
+BattlecruiserDeath:
+	playsnd        	177	# Terran\BATTLE\tbaDth00.wav
+	imgol          	333 0 0	# TerranBuildingExplosionmedium (thingy\tBangL.grp)
+	wait           	3
+	end            	
+
+BattlecruiserGndAttkInit:
+	randcondjmp 24 BattlecruiserLaserFury
+    randcondjmp 35 BattlecruiserMissileAttack
+	imgol          	446 0 0	# BCLaserFireOverlay (thingy\elbBat.grp)
+	goto           	BattlecruiserLocal00
+
+BattlecruiserLocal00:
+	randcondjmp 20 BattlecruiserLMMix
+	wait           	1
+	attackwith     	1
+	wait           	1
+	attackwith     	1
+	wait           	1
+	attackwith     	1
+	gotorepeatattk 	
+	goto           	BattlecruiserGndAttkToIdle
+
+BattlecruiserLaserFury:
+	wait   3
+	attackwith     	1
+	wait   3
+	attackwith     	1
+	wait   3
+    attackwith     	1
+	wait   3
+	attackwith     	1
+	wait   3
+	attackwith     	1
+	wait   3
+    attackwith     	1
+	wait   3
+    attackwith     	1
+	wait   3
+	attackwith     	1
+	wait   3
+	goto           	BattlecruiserGndAttkInit
+	
+BattlecruiserAirLaserFury:
+	wait   3
+	attackwith     	1
+	wait   3
+	attackwith     	1
+	wait   3
+    attackwith     	1
+	wait   3
+	attackwith     	1
+	wait   3
+	attackwith     	1
+	wait   3
+    attackwith     	1
+	wait   3
+    attackwith     	1
+	wait   3
+	attackwith     	1
+	wait   3
+	goto           	BattlecruiserLocal01
+	
+BattlecruiserMissileAttack:
+    randcondjmp 20 BattlecruiserTormentorStorm
+	wait   1
+	attackwith     	2
+	wait   1
+	attackwith     	2
+	goto           	BattlecruiserGndAttkInit
+
+BattlecruiserTormentorStorm:
+	wait   2
+	attackwith     	2
+	wait   2
+	attackwith     	2
+	wait   2
+    attackwith     	2
+	wait   2
+	attackwith     	2
+	wait   2
+	attackwith     	2
+	wait   2
+    attackwith     	2
+	wait   2
+    attackwith     	2
+	wait   2
+	attackwith     	2
+	goto BattlecruiserMissileAttack
+	
+BattlecruiserAirMissileAttack:
+	randcondjmp 20 BattlecruiserAirTormentorStorm
+	wait   1
+	attackwith     	2
+	wait   1
+	attackwith     	2
+	goto           	BattlecruiserAirAttkInit
+	
+BattlecruiserAirTormentorStorm:
+	wait   2
+	attackwith     	2
+	wait   2
+	attackwith     	2
+	wait   2
+    attackwith     	2
+	wait   2
+	attackwith     	2
+	wait   2
+	attackwith     	2
+	wait   2
+    attackwith     	2
+	wait   2
+    attackwith     	2
+	wait   2
+	attackwith     	2
+	goto BattlecruiserAirAttkInit
+	
+BattlecruiserLMMix:
+	wait   4
+	attackwith     	1
+	wait   4
+	attackwith     	2
+	wait   4
+    attackwith     	1
+	wait   4
+	attackwith     	1
+	wait   4
+	attackwith     	2
+	wait   4
+    attackwith     	1
+	wait   4
+    attackwith     	2
+	wait   4
+	attackwith     	1
+	wait   4
+	attackwith     	2
+	wait   4
+    attackwith     	1
+	goto  BattlecruiserGndAttkInit
+
+BattlecruiserAirLMMix:
+	wait   4
+	attackwith     	1
+	wait   4
+	attackwith     	2
+	wait   4
+    attackwith     	1
+	wait   4
+	attackwith     	1
+	wait   4
+	attackwith     	2
+	wait   4
+    attackwith     	1
+	wait   4
+    attackwith     	2
+	wait   4
+	attackwith     	1
+	wait   4
+	attackwith     	2
+	wait   4
+    attackwith     	1
+	goto  BattlecruiserAirAttkInit
+
+	
+BattlecruiserAirAttkInit:
+	randcondjmp 24 BattlecruiserAirLaserFury
+	randcondjmp 35 BattlecruiserAirMissileAttack
+	imgol          	446 0 0	# BCLaserFireOverlay (thingy\elbBat.grp)
+	goto           	BattlecruiserLocal01
+
+BattlecruiserLocal01:
+	randcondjmp 20 BattlecruiserAirLMMix
+	wait           	1
+	attackwith     	1
+	wait           	1
+	attackwith     	1
+	gotorepeatattk 	
+	goto           	BattlecruiserGndAttkToIdle
+
+BattlecruiserCastSpell:
+	imgolorig      	543	# Unknown543 (thingy\eycBlast.grp)
+	goto           	BattlecruiserGndAttkToIdle
+
+BattlecruiserWalking:
+	imgol          	220 0 0	# BattlecruiserGlow (thingy\tbaGlow.grp)
+	goto           	BattlecruiserGndAttkToIdle
+
+BattlecruiserWalkingToIdle:
+	setvertpos     	1
+	waitrand       	8 10
+	setvertpos     	2
+	waitrand       	8 10
+	setvertpos     	1
+	waitrand       	8 10
+	setvertpos     	0
+	waitrand       	8 10
+	goto           	BattlecruiserWalkingToIdle
